@@ -95,7 +95,7 @@ function init() {
 
 function render() {
   time += timeDelta;
-
+  var rotAxis = [0,1,0];
   var ms = new MatrixStack();
 
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
@@ -158,12 +158,12 @@ function render() {
   planet.PointMode = false;
 	
   ms.push();
-  ms.rotate(time/data.getYear, [0,1,0]);
+  ms.rotate(time/data.getYear, rotAxis);
   ms.translate(data.distance, 0, 0);
   ms.scale(data.radius);
   gl.useProgram(planet.program);
-  gl.uniformMatrix4fv(planet.uniforms.MV, true, flatten(ms.current()));
-  gl.uniformMatrix4fv(planet.uniforms.P, true, flatten(P));
+  gl.uniformMatrix4fv(planet.uniforms.MV, false, flatten(ms.current()));
+  gl.uniformMatrix4fv(planet.uniforms.P, false, flatten(P));
   gl.uniform4fv(planet.uniforms.color, flatten(data.color));
 
   planet.render();
@@ -183,7 +183,7 @@ function render() {
   planet.PointMode = false;
 	
   
-  ms.rotate(time/data.getYear, [0,1,0]);
+  ms.rotate(time/data.getYear, rotAxis);
   ms.translate(data.distance, 0, 0);
   ms.scale(data.radius);
   gl.useProgram(planet.program);
