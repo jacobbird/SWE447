@@ -95,7 +95,7 @@ function init() {
 
 function render() {
   time += timeDelta;
-  var rotAxis = [0,1,0];
+  var rotAxis = [0,0,1];
   var ms = new MatrixStack();
 
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
@@ -159,7 +159,7 @@ function render() {
 	
   ms.push();
   ms.translate(data.distance*10, 0, 0);  
-  ms.rotate(time/data.getYear, rotAxis); 
+  ms.rotate((360/data.year)*time, rotAxis); 
   ms.scale(data.radius);
   gl.useProgram(planet.program);
   gl.uniformMatrix4fv(planet.uniforms.MV, false, flatten(ms.current()));
