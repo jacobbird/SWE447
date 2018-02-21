@@ -7,7 +7,7 @@ var SolarSystem = {
   },
   Mercury : {
     radius : 0.0553,
-    distance : 0.387,
+    distance : 0.687,
     year : 0.241,
     color : [ 1.0, 0.0, 0.0, 1.0 ]
   },
@@ -37,31 +37,31 @@ var SolarSystem = {
   },
   Jupiter : {
     radius : 11.21,
-    distance : 5.20,
+    distance : 2.0,
     year : 11.9,
     color : [ 1.0, 153/255, 0.0, 1.0 ]
   },
   Saturn : {
     radius : 9.45,
-    distance : 9.58,
+    distance : 2.5,
     year : 29.4,
     color : [ 1.0, 1.0, 0.0, 1.0 ]
   },
   Uranus : {
     radius : 4.01,
-    distance : 19.20,
+    distance : 3.0,
     year : 83.7,
     color : [ 0.0, 0.1, 1.0, 1.0 ]
   },
   Neptune : {
     radius : 3.88,
-    distance : 30.05,
+    distance : 3.5,
     year : 163.7,
     color : [ 0.0, 0.0, 1.0, 1.0 ]
   },
   Pluto : {
     radius : 0.186,
-    distance : 39.48,
+    distance : 4.0,
     year : 247.9,
     color : [ 150/255, 75/255, 0.0, 1.0 ]
   }
