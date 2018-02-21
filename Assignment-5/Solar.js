@@ -95,7 +95,7 @@ function init() {
 
 function render() {
   time += timeDelta;
-  var rotAxis = [0,0,1];
+  var rotAxis = [0,1,1];
   var ms = new MatrixStack();
 
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
