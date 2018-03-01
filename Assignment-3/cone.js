@@ -52,7 +52,7 @@ function render() {
   //  Add your code for more planets here!
   //
 	
-  planet.PointMode = false;
+  //cone.PointMode = false;
 	
   ms.push();
   
