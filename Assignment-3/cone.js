@@ -13,6 +13,12 @@ function init() {
 
     cone = new Cone(gl, 50);
     
+    cone.uniforms = { 
+      //color : gl.getUniformLocation(planet.program, "color"),
+      MV : gl.getUniformLocation(cone.program, "MV"),
+      P : gl.getUniformLocation(cone.program, "P"),
+    };	
+	
     gl.clearColor( 0.0, 0.0, 1.0, 1.0 );
     
     render();
