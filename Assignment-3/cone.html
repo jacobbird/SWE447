@@ -8,10 +8,15 @@
  
   <script id = "Cone-vertex-shader" type="x-shader/x-vertex">
   attribute vec4 vPosition;
+  
+  
+  uniform mat4  MV;
+  uniform mat4  P;
+  
   void main() 
   {
        gl_PointSize = 5.0;
-       gl_Position = vPosition;
+       gl_Position = P * MV * vPosition;
   }
   </script>
   
