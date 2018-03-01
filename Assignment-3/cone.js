@@ -65,18 +65,18 @@ function render() {
   //
 	
   //cone.PointMode = false;
-	
+  var cone2 = cone; 	
   ms.push();
-  
+  ms.scale(0.5);
   ms.rotate(25, rotAxis); 
   //var meve = new MV();
   
-  gl.useProgram(cone.program);
-  gl.uniformMatrix4fv(cone.uniforms.MV, false, flatten(ms.current()));
-  gl.uniformMatrix4fv(cone.uniforms.P, false, flatten(P));
+  gl.useProgram(cone2.program);
+  gl.uniformMatrix4fv(cone2.uniforms.MV, false, flatten(ms.current()));
+  gl.uniformMatrix4fv(cone2.uniforms.P, false, flatten(P));
   //gl.uniform4fv(cone.uniforms.color, flatten(data.color));
 
-  cone.render();
+  cone2.render();
   ms.pop();
     
   window.requestAnimationFrame(render);
