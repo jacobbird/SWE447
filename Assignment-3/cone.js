@@ -69,10 +69,10 @@ function render() {
   ms.push();
   
   ms.rotate(25, rotAxis); 
-  
+  var meve = new MV();
   
   gl.useProgram(cone.program);
-  gl.uniformMatrix4fv(cone.uniforms.MV, false, flatten(ms.current()));
+  gl.uniformMatrix4fv(cone.uniforms.MV, false, meve.flatten(ms.current()));
   gl.uniformMatrix4fv(cone.uniforms.P, false, flatten(P));
   gl.uniform4fv(cone.uniforms.color, flatten(data.color));
 
