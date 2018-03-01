@@ -27,7 +27,7 @@ function init() {
 }
 
 function render() {
-    
+  var timeDelta = 0.2; 
   time += timeDelta;
   var rotAxis = [0,1,1];
   var ms = new MatrixStack();
