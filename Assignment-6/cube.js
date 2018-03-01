@@ -33,7 +33,7 @@ function init() {
     var fovy = 120.0; // degrees
     var aspect = w / h;
 
-    cube = new Cube(gl);
+    cube = new rCube(gl);
     cube.P = perspective(fovy, aspect, near, far);
 	
     window.requestAnimationFrame(render);
