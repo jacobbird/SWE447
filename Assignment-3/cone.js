@@ -16,6 +16,7 @@ function init() {
     gl.clearColor( 0.0, 0.0, 1.0, 1.0 );
     
     render();
+    window.requestAnimationFrame(render);
 }
 
 function render() {
@@ -58,7 +59,7 @@ function render() {
   cone.render();
   ms.pop();
     
-    
+  window.requestAnimationFrame(render);
     
 }
 
