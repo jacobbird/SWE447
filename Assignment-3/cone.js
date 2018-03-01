@@ -1,6 +1,18 @@
 var gl = null;
 var cone = null;
-var time = 0;
+// Viewing transformation parameters
+var V;  // matrix storing the viewing transformation
+
+// Projection transformation parameters
+var P;  // matrix storing the projection transformation
+var near = 10;      // near clipping plane's distance
+var far = 120;      // far clipping plane's distance
+
+// Animation variables
+var time = 0.0;      // time, our global time constant, which is 
+                     // incremented every frame
+var timeDelta = 0.0001; // the amount that time is updated each fraime
+
 function init() {
     var canvas = document.getElementById( "webgl-canvas" );
     
@@ -28,7 +40,7 @@ function init() {
 
 function render() {
   
-  var timeDelta = 0.2; 
+  
   time += timeDelta;
   var rotAxis = [0,1,1];
   var ms = new MatrixStack();
