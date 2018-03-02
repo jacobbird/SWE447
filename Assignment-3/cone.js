@@ -70,7 +70,7 @@ function render() {
   ms.scale(0.5);
   ms.rotate(25, rotAxis); 
   //var meve = new MV();
-  
+  console.log(ms.current());
   gl.useProgram(cone2.program);
   gl.uniformMatrix4fv(cone2.uniforms.MV, false, flatten(ms.current()));
   gl.uniformMatrix4fv(cone2.uniforms.P, false, flatten(P));
