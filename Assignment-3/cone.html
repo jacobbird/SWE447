@@ -3,15 +3,22 @@
 <head>
   <script src="../Common/initShaders.js"></script>
   <script src="../Common/Cone.js"></script>
+  <script src="../Common/MV.js"></script>
+  <script src="../Common/MatrixStack.js"></script>  
   <script src="../Common/webgl-utils.js"></script>
   <script src="cone.js"></script> 
  
   <script id = "Cone-vertex-shader" type="x-shader/x-vertex">
   attribute vec4 vPosition;
+  
+  
+  uniform mat4  MV;
+  uniform mat4  P;
+  
   void main() 
   {
        gl_PointSize = 5.0;
-       gl_Position = vPosition;
+       gl_Position = P * MV * vPosition;
   }
   </script>
   
