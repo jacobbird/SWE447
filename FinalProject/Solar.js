@@ -152,8 +152,8 @@ Mover.prototype.update = function() {
 };
 
 var force = Attractor.calculateAttraction(mover);
-  mover.applyForce(force);
-  mover.update();
+  Mover.applyForce(force);
+  Mover.update();
   // Create a few temporary variables to make it simpler to work with
   // the various properties we'll use to render the planets.  The Planets
   // dictionary (created in init()) can be indexed by each planet's name.
