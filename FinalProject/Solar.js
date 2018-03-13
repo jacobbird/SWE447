@@ -105,7 +105,25 @@ function render() {
 
   V = translate(0.0, 0.0, -0.5*(near + far));
   ms.load(V);  
-
+  
+  var Mover = function() {
+    this.position = new PVector(400, 50);
+    this.velocity = new PVector(1, 0);
+    this.acceleration = new PVector(0, 0);
+    this.mass = 1;
+};
+  
+Mover.prototype.applyForce = function(force) {
+    var f = PVector.div(force,this.mass);
+    this.acceleration.add(f);
+};
+  
+Mover.prototype.update = function() {
+    this.velocity.add(this.acceleration);
+    this.position.add(this.velocity);
+    this.acceleration.mult(0);
+};
+	
   // Create a few temporary variables to make it simpler to work with
   // the various properties we'll use to render the planets.  The Planets
   // dictionary (created in init()) can be indexed by each planet's name.
