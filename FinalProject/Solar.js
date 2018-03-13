@@ -106,6 +106,32 @@ function render() {
   V = translate(0.0, 0.0, -0.5*(near + far));
   ms.load(V);  
   
+  var Attractor = function() {
+    this.position = new PVector(width/2, height/2);
+    this.mass = 20;
+    this.G = 1;
+    this.dragOffset = new PVector(0, 0);
+    this.dragging = false;
+    this.rollover = false;
+};
+
+Attractor.prototype.calculateAttraction = function(mover) {
+    // Calculate direction of force
+    var force = PVector.sub(this.position, mover.position);
+    // Distance between objects       
+    var distance = force.mag();
+    // Limiting the distance to eliminate "extreme" results
+    // for very close or very far objects                            
+    distance = constrain(distance, 5, 25);
+    // Normalize vector                    
+    force.normalize();
+    // Calculate gravitional force magnitude  
+    var strength = (this.G * this.mass * mover.mass) / (distance * distance);
+    // Get force vector --> magnitude * direction
+    force.mult(strength);
+    return force;
+};	
+	
   var Mover = function() {
     this.position = new PVector(400, 50);
     this.velocity = new PVector(1, 0);
