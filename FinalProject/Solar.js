@@ -107,12 +107,24 @@ function render() {
   V = translate(0.0, 0.0, -0.5*(near + far));
   ms.load(V);  
   
+  var initX, initY, finalY, deltaY, degreesY;
+	
   canvas.onmousedown = function(e){
 	  console.log(e.clientX);
+	  console.log(e.clientY);
+	  initX = e.clientX;
+	  initY = e.clientY;
 	  
   }
+  canvas.onmouseup = function(e){
+	console.log(e.clientY);
+	finalY = e.clientY
+  }
   
-
+  deltaY=initY-finalY;
+  degreesY=deltaY/20;
+  
+ 
   // Create a few temporary variables to make it simpler to work with
   // the various properties we'll use to render the planets.  The Planets
   // dictionary (created in init()) can be indexed by each planet's name.
