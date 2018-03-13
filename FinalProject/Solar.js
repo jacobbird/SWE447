@@ -107,7 +107,7 @@ function render() {
   V = translate(0.0, 0.0, -0.5*(near + far));
   ms.load(V);  
   
-  var initX, initY, finalY, deltaY, degreesY;
+  var initX, initY, finalY, deltaY, degreesY, distanceX;
 	
   canvas.onmousedown = function(e){
 	  console.log(e.clientX);
@@ -123,7 +123,12 @@ function render() {
   
   deltaY=initY-finalY;
   degreesY=deltaY/20;
-  
+  if(initX>408){ 
+  	distanceX=initX-408;
+  }
+  else{
+  	distanceX=408-initX;	  
+  }
  
   // Create a few temporary variables to make it simpler to work with
   // the various properties we'll use to render the planets.  The Planets
