@@ -97,7 +97,8 @@ function render() {
   time += timeDelta;
   var rotAxis = [0,1,1];
   var ms = new MatrixStack();
-
+  var width = canvas.clientWidth;
+  var height = canvas.clientHeight;
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
   // Specify the viewing transformation, and use it to initialize the 
@@ -149,7 +150,10 @@ Mover.prototype.update = function() {
     this.position.add(this.velocity);
     this.acceleration.mult(0);
 };
-	
+
+var force = attractor.calculateAttraction(mover);
+  mover.applyForce(force);
+  mover.update();
   // Create a few temporary variables to make it simpler to work with
   // the various properties we'll use to render the planets.  The Planets
   // dictionary (created in init()) can be indexed by each planet's name.
