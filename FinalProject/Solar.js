@@ -109,7 +109,6 @@ function render() {
   
   var Attractor = function() {
     this.position = new PVector(0, 0);
-	  console.log(position);
     this.mass = 20;
     this.G = 1;
     this.dragOffset = new PVector(0, 0);
@@ -121,6 +120,8 @@ function render() {
 	
 Attractor.calculateAttraction = function(mover) {
     // Calculate direction of force
+
+	console.log(this.position);
     var force = PVector.sub(this.position, mover.position);
     // Distance between objects       
     var distance = force.mag();
