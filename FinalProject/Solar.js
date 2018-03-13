@@ -151,7 +151,7 @@ Mover.prototype.update = function() {
     this.acceleration.mult(0);
 };
 
-var force = attractor.calculateAttraction(mover);
+var force = Attractor.calculateAttraction(mover);
   mover.applyForce(force);
   mover.update();
   // Create a few temporary variables to make it simpler to work with
