@@ -97,8 +97,8 @@ function render() {
   time += timeDelta;
   var rotAxis = [0,1,1];
   var ms = new MatrixStack();
-  var width = canvas.clientWidth;
-  var height = canvas.clientHeight;
+  var width = 200;
+  var height = 200;
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
   // Specify the viewing transformation, and use it to initialize the 
