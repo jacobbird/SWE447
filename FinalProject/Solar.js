@@ -108,9 +108,7 @@ function render() {
   ms.load(V);  
   
   var Attractor = function() {
-    this.position = new PVector();
-	this.position.x = 0;
-	this.position.y = 0;
+    this.position = new PVector(0.0,0.0);
     this.mass = 20;
     this.G = 1;
     this.dragOffset = new PVector(0, 0);
@@ -140,9 +138,7 @@ Attractor.calculateAttraction = function(mover) {
 };	
 	
   var Mover = function() {
-    this.position = new PVector();
-	this.position.x= 400;
-	this.position.y= 50
+    this.position = new PVector(400.0,50.0);
     this.velocity = new PVector(1, 0);
     this.acceleration = new PVector(0, 0);
     this.mass = 1;
