@@ -116,7 +116,7 @@ function render() {
     this.rollover = false;
 };
 
-Attractor.prototype.calculateAttraction = function(mover) {
+Attractor.calculateAttraction = function(mover) {
     // Calculate direction of force
     var force = PVector.sub(this.position, mover.position);
     // Distance between objects       
