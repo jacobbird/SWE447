@@ -116,6 +116,8 @@ function render() {
     this.rollover = false;
 };
 
+	
+	
 Attractor.calculateAttraction = function(mover) {
     // Calculate direction of force
     var force = PVector.sub(this.position, mover.position);
@@ -140,12 +142,12 @@ Attractor.calculateAttraction = function(mover) {
     this.mass = 1;
 };
   
-Mover.prototype.applyForce = function(force) {
+Mover.applyForce = function(force) {
     var f = PVector.div(force,this.mass);
     this.acceleration.add(f);
 };
   
-Mover.prototype.update = function() {
+Mover.update = function() {
     this.velocity.add(this.acceleration);
     this.position.add(this.velocity);
     this.acceleration.mult(0);
