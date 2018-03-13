@@ -108,7 +108,7 @@ function render() {
   ms.load(V);  
   
   var Attractor = function() {
-    this.position = new PVector(width/2, height/2);
+    this.position = new PVector(0, 0);
     this.mass = 20;
     this.G = 1;
     this.dragOffset = new PVector(0, 0);
