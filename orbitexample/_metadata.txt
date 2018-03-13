@@ -1,0 +1,18 @@
+title: Earth and Moon in 3D
+logo-image: EarthAndMoon3D/EarthAndMoon.png
+author: Francisco Esquembre
+copyright: 
+author-image: EarthAndMoon3D/PacoEsquembre2011.png
+main-script: EarthAndMoon3D_Simulation.js
+main-simulation: EarthAndMoon3D_Simulation.xhtml
+html-description: EarthAndMoon3D_Intro_1.html
+html-contents: EarthAndMoon3D_Contents.xhtml
+html-main: EarthAndMoon3D.xhtml
+page-title: Earth and Moon in 3D
+page-index: EarthAndMoon3D_Intro_1.html
+page-index: EarthAndMoon3D_Simulation.xhtml
+resource: EarthAndMoon3D/earth.jpg
+resource: EarthAndMoon3D/PacoEsquembre2011.png
+resource: EarthAndMoon3D/EarthAndMoon.png
+resource: EarthAndMoon3D/moon_color.jpg
+resource: EarthAndMoon3D/night_sky.png
