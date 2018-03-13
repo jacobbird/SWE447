@@ -107,7 +107,10 @@ function render() {
   V = translate(0.0, 0.0, -0.5*(near + far));
   ms.load(V);  
   
-	
+  canvas.onmousedown = function(e){
+	  console.log(e.clientX);
+	  
+  }
   
 
   // Create a few temporary variables to make it simpler to work with
