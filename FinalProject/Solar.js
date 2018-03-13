@@ -98,8 +98,7 @@ function render() {
   time += timeDelta;
   var rotAxis = [0,1,1];
   var ms = new MatrixStack();
-  var width = 200;
-  var height = 200;
+ 
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
   // Specify the viewing transformation, and use it to initialize the 
@@ -109,61 +108,8 @@ function render() {
   ms.load(V);  
   
 	
-  PVector position;
-	position = new PVector(0.0,0.0);
-  var Attractor = function() {
-    this.position = new PVector(0.0,0.0);
-    this.mass = 20;
-    this.G = 1;
-    this.dragOffset = new PVector(0, 0);
-    this.dragging = false;
-    this.rollover = false;
-};
-
-	
-	
-Attractor.calculateAttraction = function(mover) {
-    // Calculate direction of force
-
-	console.log(this.position);
-    var force = PVector.sub(this.position, mover.position);
-    // Distance between objects       
-    var distance = force.mag();
-    // Limiting the distance to eliminate "extreme" results
-    // for very close or very far objects                            
-    distance = constrain(distance, 5, 25);
-    // Normalize vector                    
-    force.normalize();
-    // Calculate gravitional force magnitude  
-    var strength = (this.G * this.mass * mover.mass) / (distance * distance);
-    // Get force vector --> magnitude * direction
-    force.mult(strength);
-    return force;
-};	
-	
-  var Mover = function() {
-    this.position = new PVector(400.0,50.0);
-    this.velocity = new PVector(1, 0);
-    this.acceleration = new PVector(0, 0);
-    this.mass = 1;
-};
   
-Mover.applyForce = function(force) {
-    var f = PVector.div(force,this.mass);
-    this.acceleration.add(f);
-};
-  
-Mover.update = function() {
-    this.velocity.add(this.acceleration);
-    this.position.add(this.velocity);
-    this.acceleration.mult(0);
-};
 
-
-
-var force = Attractor.calculateAttraction(Mover);
-  Mover.applyForce(force);
-  Mover.update();
   // Create a few temporary variables to make it simpler to work with
   // the various properties we'll use to render the planets.  The Planets
   // dictionary (created in init()) can be indexed by each planet's name.
