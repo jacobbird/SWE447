@@ -176,7 +176,7 @@ function render() {
   ms.pop();
 	
   
-  for( var i = 0; i< count; i++){	
+  for( i = 0; i< count; i++){	
   name = "Pluto";
   planet = Planets[name];
   data = SolarSystem[name];
@@ -189,7 +189,7 @@ function render() {
   ms.push();
   
   ms.rotate(mat[i][0]*time, rotAxis); 
-  ms.translate(mat[i][1], 0, 0);  
+  ms.translate(mat[i][1]/10, 0, 0);  
   ms.scale(data.radius);
   gl.useProgram(planet.program);
   gl.uniformMatrix4fv(planet.uniforms.MV, false, flatten(ms.current()));
