@@ -132,7 +132,10 @@ function render() {
   		distanceX=408-initX;	  
 	}
 	
-  	mat.push(new Array(degreesY, distanceX));
+	name = "Pluto";
+        planet = Planets[name];  
+	
+  	mat.push(new Array(degreesY, distanceX, planet));
 	count = count + 1;
   }
   
@@ -177,8 +180,7 @@ function render() {
 	
   
   for( i = 0; i< count; i++){	
-  name = "Pluto";
-  planet = Planets[name];
+  
   data = SolarSystem[name];
   //
   //  Add your code for more planets here!
@@ -191,10 +193,10 @@ function render() {
   ms.rotate(mat[i][0]*time*100, rotAxis); 
   ms.translate(mat[i][1]/10, 0, 0);  
   ms.scale(data.radius);
-  gl.useProgram(planet.program);
-  gl.uniformMatrix4fv(planet.uniforms.MV, false, flatten(ms.current()));
-  gl.uniformMatrix4fv(planet.uniforms.P, false, flatten(P));
-  gl.uniform4fv(planet.uniforms.color, flatten(data.color));
+  gl.useProgram(mat[i][3].program);
+  gl.uniformMatrix4fv(mat[i][3].uniforms.MV, false, flatten(ms.current()));
+  gl.uniformMatrix4fv(mat[i][3].uniforms.P, false, flatten(P));
+  gl.uniform4fv(mat[i][3].uniforms.color, flatten(data.color));
 
   planet.render();
   ms.pop();
