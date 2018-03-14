@@ -198,7 +198,7 @@ function render() {
   gl.uniformMatrix4fv(mat[i][2].uniforms.P, false, flatten(P));
   gl.uniform4fv(mat[i][2].uniforms.color, flatten(data.color));
 
-  planet.render();
+  mat[i][2].render();
   ms.pop();
 	 
   }
