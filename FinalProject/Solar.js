@@ -110,7 +110,7 @@ function render() {
   V = translate(0.0, 0.0, -0.5*(near + far));
   ms.load(V);  
   
-  var initX, initY, finalY, deltaY, degreesY, distanceX;
+  
   
   canvas.onmousedown = function(e){
 	  console.log(e.clientX);
