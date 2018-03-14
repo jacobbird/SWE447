@@ -190,8 +190,8 @@ function render() {
 	
   ms.push();
   
-  ms.rotate(mat[i][0]*time*100, rotAxis); 
-  ms.translate(mat[i][1]/10, 0, 0);  
+  ms.rotate(mat[i][0]*time*1000, rotAxis); 
+  ms.translate(mat[i][1]/4, 0, 0);  
   ms.scale(data.radius);
   gl.useProgram(mat[i][2].program);
   gl.uniformMatrix4fv(mat[i][2].uniforms.MV, false, flatten(ms.current()));
