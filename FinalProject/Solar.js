@@ -7,6 +7,8 @@
 
 var canvas;
 var gl;
+var count;
+var mat;
 
 //---------------------------------------------------------------------------
 //
@@ -51,7 +53,7 @@ var timeDelta = 0.0001; // the amount that time is updated each fraime
 
 function init() {
   canvas = document.getElementById("webgl-canvas");
-
+  count = 0;
   // Configure our WebGL environment
   gl = WebGLUtils.setupWebGL(canvas);
   if (!gl) { alert("WebGL initialization failed"); }
@@ -59,6 +61,7 @@ function init() {
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
   gl.enable(gl.DEPTH_TEST);
 
+  mat=[];
   // Initialize the planets in the Planets list, including specifying
   // necesasry shaders, shader uniform variables, and other initialization
   // parameters.  This loops adds additinoal properties to each object
@@ -108,7 +111,7 @@ function render() {
   ms.load(V);  
   
   var initX, initY, finalY, deltaY, degreesY, distanceX;
-	
+  
   canvas.onmousedown = function(e){
 	  console.log(e.clientX);
 	  console.log(e.clientY);
@@ -119,17 +122,22 @@ function render() {
   canvas.onmouseup = function(e){
 	console.log(e.clientY);
 	finalY = e.clientY
+	  
+	deltaY=initY-finalY;
+  	degreesY=deltaY/20;
+  	if(initX>408){ 
+  		distanceX=initX-408;
+  	}
+  	else{
+  		distanceX=408-initX;	  
+	}
+	
+  	mat.push(new Array(degreesY, distanceX));
+	count = count + 1;
   }
   
-  deltaY=initY-finalY;
-  degreesY=deltaY/20;
-  if(initX>408){ 
-  	distanceX=initX-408;
-  }
-  else{
-  	distanceX=408-initX;	  
-  }
- 
+  
+	
   // Create a few temporary variables to make it simpler to work with
   // the various properties we'll use to render the planets.  The Planets
   // dictionary (created in init()) can be indexed by each planet's name.
@@ -168,7 +176,7 @@ function render() {
   ms.pop();
 	
   
-	
+  for( var i = 0; i< count; i++){	
   name = "Pluto";
   planet = Planets[name];
   data = SolarSystem[name];
@@ -180,8 +188,8 @@ function render() {
 	
   ms.push();
   
-  ms.rotate((360/data.year)*time, rotAxis); 
-  ms.translate(data.distance*10, 0, 0);  
+  ms.rotate(mat[i][0]*time, rotAxis); 
+  ms.translate(mat[i][1], 0, 0);  
   ms.scale(data.radius);
   gl.useProgram(planet.program);
   gl.uniformMatrix4fv(planet.uniforms.MV, false, flatten(ms.current()));
@@ -190,6 +198,8 @@ function render() {
 
   planet.render();
   ms.pop();
+	 
+  }
 	
   window.requestAnimationFrame(render);
 }
