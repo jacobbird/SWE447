@@ -180,7 +180,7 @@ function render() {
 	
   
   for( i = 0; i< count; i++){	
-  
+  name = "Pluto";
   data = SolarSystem[name];
   //
   //  Add your code for more planets here!
@@ -193,10 +193,10 @@ function render() {
   ms.rotate(mat[i][0]*time*100, rotAxis); 
   ms.translate(mat[i][1]/10, 0, 0);  
   ms.scale(data.radius);
-  gl.useProgram(mat[i][3].program);
-  gl.uniformMatrix4fv(mat[i][3].uniforms.MV, false, flatten(ms.current()));
-  gl.uniformMatrix4fv(mat[i][3].uniforms.P, false, flatten(P));
-  gl.uniform4fv(mat[i][3].uniforms.color, flatten(data.color));
+  gl.useProgram(mat[i][2].program);
+  gl.uniformMatrix4fv(mat[i][2].uniforms.MV, false, flatten(ms.current()));
+  gl.uniformMatrix4fv(mat[i][2].uniforms.P, false, flatten(P));
+  gl.uniform4fv(mat[i][2].uniforms.color, flatten(data.color));
 
   planet.render();
   ms.pop();
