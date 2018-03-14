@@ -188,7 +188,7 @@ function render() {
 	
   ms.push();
   
-  ms.rotate(mat[i][0]*time, rotAxis); 
+  ms.rotate(mat[i][0]*time*100, rotAxis); 
   ms.translate(mat[i][1]/10, 0, 0);  
   ms.scale(data.radius);
   gl.useProgram(planet.program);
