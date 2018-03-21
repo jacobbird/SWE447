@@ -184,7 +184,7 @@ function Cube(gl, vertexShaderId, fragmentShaderId) {
             handleLoadedTexture (texImage, texture);
         }
         if(mixedTextures == 0)
-            texImage.src = "leaves.jpg"; //"monkey.png"; //"noodles.jpg" "5.jpg" "3.jpg" "2.jpg" "1.jpg" "thumb.png"; "cubetexture.png" "mud.gif"
+            texImage.src = "monkey.png"; //"monkey.png"; //"noodles.jpg" "5.jpg" "3.jpg" "2.jpg" "1.jpg" "thumb.png"; "cubetexture.png" "mud.gif"
         else texImage.src = "noodles.jpg"; 
             
     }
