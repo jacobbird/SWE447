@@ -35,10 +35,10 @@ uniform float ukernelWeight;
 void main()
 {
     //*** without image processing ***
-    gl_FragColor = texture2D(uSampler, vTextureCoord);
+    //gl_FragColor = texture2D(uSampler, vTextureCoord);
     
     //now let's manipulate that image by swapping red and blue?
-    //gl_FragColor = texture2D(uSampler, vTextureCoord).bgra;
+    gl_FragColor = texture2D(uSampler, vTextureCoord).bgra;
     
     //***  RGB ➛ Grayscale (luminance) ***
     /*const vec3 RGBtoY = vec3(0.2126, 0.7152, 0.0722);
