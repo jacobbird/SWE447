@@ -33,8 +33,18 @@ var Planets = {
   Pluto : undefined
 };
 
+
+var cube = null;
+var gl = null;
+
+
 // Viewing transformation parameters
-var V;  // matrix storing the viewing transformation
+var V = undefined;
+var M = undefined;
+var angle = 0.0;
+var dAngle = Math.PI / 10.0;
+// Viewing transformation parameters
+// matrix storing the viewing transformation
 
 // Projection transformation parameters
 var P;  // matrix storing the projection transformation
@@ -58,23 +68,41 @@ function init() {
   gl = WebGLUtils.setupWebGL(canvas);
   if (!gl) { alert("WebGL initialization failed"); }
 
-  gl.clearColor(0.0, 0.0, 0.0, 1.0);
-  gl.enable(gl.DEPTH_TEST);
+  gl.clearColor(0.0, 0.0, 0.0, 1.0);  // Clear to black, fully opaque
+    // Enable depth test
+    gl.clearDepth(1.0);                 // Clear everything
+    gl.enable(gl.DEPTH_TEST);
+    // Accept fragment if it closer to the camera than the former one
+    gl.depthFunc(gl.LEQUAL);            // Near things obscure far things
+
+    var w = canvas.clientWidth;
+    var h = canvas.clientHeight;
+    var fovy = 60.0; // degrees
+    var aspect = w / h;
+
+    cube = new Cube(gl);
+    cube.P = perspective(fovy, aspect, near, far);
+	
+    
 
   mat=[];
   // Initialize the planets in the Planets list, including specifying
   // necesasry shaders, shader uniform variables, and other initialization
   // parameters.  This loops adds additinoal properties to each object
   // in the Planets object;
-
+	
   for (var name in Planets ) {
 
     // Create a new sphere object for our planet, and assign it into the
     // appropriate place in the Planets dictionary.  And to simplify the code
     // assign that same value to the local variable "p", for later use.
 
-    var planet = Planets[name] = new Sphere();
-
+    //if(name==="Sun"){
+		//var Sun = Planets[name] = new Sphere();
+	//}
+	//else{
+		var planet = Planets[name] = new Sphere();
+	//}
     // For each planet, we'll add a new property (which itself is a 
     // dictionary) that contains the uniforms that we will use in
     // the associated shader programs for drawing the planets.  These
@@ -87,6 +115,7 @@ function init() {
     };
   }
 
+  
   resize();
 
   window.requestAnimationFrame(render);  
@@ -103,11 +132,25 @@ function render() {
   var ms = new MatrixStack();
  
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+  
+    V = translate(0.0, 0.0, -0.5*(near + far));
+    angle += dAngle;
+    offset = [ 0.0,  0.0, 0.0 ]; 
+    var axis = [ 1.0, 1.0, 1.0 ];
+    M = mult(translate(offset), rotate(angle, axis));
 
+    cube.MV = mult(V, M);
+    
+    cube.AmbientLight = vec3(0.2, 0.2, 0.2);
+  	cube.Light_color = vec3(1.0, 1.0, 1.0);
+  	cube.Light_position = vec3(0.0, 0.0, 1.0);
+  	cube.Shininess = 40.0;
+       
+    cube.render();
   // Specify the viewing transformation, and use it to initialize the 
   // matrix stack
 
-  V = translate(0.0, 0.0, -0.5*(near + far));
+  
   ms.load(V);  
   
   
@@ -150,11 +193,13 @@ function render() {
   // about the planets in SolarSystem.  Look at how these are
   // used; it'll simplify the work you need to do.
 
-  var name, planet, data;
+  var name, planet, data, Sun;
 
   name = "Sun";
   planet = Planets[name];
   data = SolarSystem[name];
+  
+  
   
   // Set PointMode to true to render all the vertices as points, as
   // compared to filled triangles.  This can be useful if you think
@@ -162,7 +207,7 @@ function render() {
   // "planet" variable is set for each object, you will need to set this
   // for each planet separately.
 
-  planet.PointMode = false;
+  planet.PointMode = true;
 
   // Use the matrix stack to configure and render a planet.  How you rener
   // each planet will be similar, but not exactly the same.  In particular,
